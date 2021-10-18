@@ -1,0 +1,5 @@
+express
+path
+ejs
+body-parser
+discord-webhook-node
